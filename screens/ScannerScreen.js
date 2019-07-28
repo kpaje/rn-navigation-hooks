@@ -26,12 +26,12 @@ export default class BarcodeApp extends Component {
 		});
 	};
 
-	_handleBarCodeRead = data => {
+	_handleBarCodeRead = barcode => {
 		// this.state.assetArray.map((val, key) => {
 		// 	return <Asset key={key} keyval={key} val={val} />;
 		// });
-		Alert.alert("Scan successful!", JSON.stringify(data.data));
-		console.log("asset tag:", data.data);
+		Alert.alert("Scan successful!", JSON.stringify(barcode.data));
+		console.log("asset tag:", barcode.data);
 		// this.state.assetArray.push({ assetTag: data.data });
 		// this.setState({ assetArray: this.state.assetArray });
 		// this.setState({ assetText: data.data });
@@ -47,10 +47,7 @@ export default class BarcodeApp extends Component {
 				) : (
 					<BarCodeScanner
 						onBarCodeRead={this._handleBarCodeRead}
-						style={{
-							height: 400,
-							width: 400
-						}}
+						style={styles.scanner}
 					/>
 				)}
 			</View>
@@ -72,5 +69,9 @@ const styles = StyleSheet.create({
 		fontWeight: "bold",
 		textAlign: "center",
 		color: "#34495e"
+	},
+	scanner: {
+		height: 400,
+		width: 400
 	}
 });

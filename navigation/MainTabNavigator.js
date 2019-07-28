@@ -2,7 +2,7 @@ import React from "react";
 import { Platform } from "react-native";
 import {
 	createStackNavigator,
-	createBottomTabNavigator
+	createMaterialBottomTabNavigator
 } from "react-navigation";
 
 import TabBarIcon from "../components/TabBarIcon";
@@ -76,7 +76,7 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = "";
 
-const tabNavigator = createBottomTabNavigator({
+const tabNavigator = createMaterialBottomTabNavigator({
 	HomeStack,
 	BarcodeScannerStack,
 	SettingsStack

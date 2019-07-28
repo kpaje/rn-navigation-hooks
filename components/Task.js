@@ -5,13 +5,6 @@ import Icon from "react-native-vector-icons/Feather";
 export default function Task(props) {
 	return (
 		<View style={styles.listContainer}>
-			<Icon
-				name={props.checked ? "check" : "square"}
-				size={30}
-				color="black"
-				style={{ marginLeft: 15 }}
-				onPress={props.setChecked}
-			/>
 			<View>
 				{props.checked && <View style={styles.verticalLine} />}
 				<Text style={styles.listItem}>{props.text}</Text>
