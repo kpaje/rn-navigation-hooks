@@ -48,6 +48,7 @@ export default function HomeScreen() {
 					placeholder="What do you want to do today?"
 					placeholderTextColor="#abbabb"
 					onChangeText={value => setValue(value)}
+					value={value}
 				/>
 				<TouchableOpacity onPress={() => addTodo()}>
 					<Icon name="plus" size={30} color="blue" style={{ marginLeft: 15 }} />

@@ -2,7 +2,7 @@ import React from "react";
 import { Platform } from "react-native";
 import {
 	createStackNavigator,
-	createMaterialBottomTabNavigator
+	createMaterialTopTabNavigator
 } from "react-navigation";
 
 import TabBarIcon from "../components/TabBarIcon";
@@ -17,16 +17,17 @@ const config = Platform.select({
 
 const HomeStack = createStackNavigator(
 	{
-		Home: HomeScreen
+		screen: HomeScreen
 	},
 	config
 );
 
 HomeStack.navigationOptions = {
 	tabBarLabel: "Home",
-	tabBarIcon: ({ focused }) => (
+	tabBarIcon: ({ focused, tintColor }) => (
 		<TabBarIcon
 			focused={focused}
+			tintColor={tintColor}
 			name={
 				Platform.OS === "ios"
 					? `ios-information-circle${focused ? "" : "-outline"}`
@@ -40,16 +41,17 @@ HomeStack.path = "";
 
 const BarcodeScannerStack = createStackNavigator(
 	{
-		BarcodeScanner: ScannerScreen
+		screen: ScannerScreen
 	},
 	config
 );
 
 BarcodeScannerStack.navigationOptions = {
 	tabBarLabel: "Scanner",
-	tabBarIcon: ({ focused }) => (
+	tabBarIcon: ({ focused, tintColor }) => (
 		<TabBarIcon
 			focused={focused}
+			tintColor={tintColor}
 			name={Platform.OS === "ios" ? "ios-barcode" : "md-barcode"}
 		/>
 	)
@@ -59,16 +61,17 @@ BarcodeScannerStack.path = "";
 
 const SettingsStack = createStackNavigator(
 	{
-		Settings: SettingsScreen
+		screen: SettingsScreen
 	},
 	config
 );
 
 SettingsStack.navigationOptions = {
 	tabBarLabel: "Settings",
-	tabBarIcon: ({ focused }) => (
+	tabBarIcon: ({ focused, tintColor }) => (
 		<TabBarIcon
 			focused={focused}
+			tintColor={tintColor}
 			name={Platform.OS === "ios" ? "ios-options" : "md-options"}
 		/>
 	)
@@ -76,11 +79,28 @@ SettingsStack.navigationOptions = {
 
 SettingsStack.path = "";
 
-const tabNavigator = createMaterialBottomTabNavigator({
-	HomeStack,
-	BarcodeScannerStack,
-	SettingsStack
-});
+const tabNavigator = createMaterialTopTabNavigator(
+	{
+		HomeStack,
+		BarcodeScannerStack,
+		SettingsStack
+	},
+	{
+		tabBarPosition: "bottom",
+		tabBarOptions: {
+			showIcon: true,
+			activeTintColor: "#ffffff",
+			inactiveTintColor: "#deb408",
+			style: {
+				backgroundColor: "black"
+			},
+			indicatorStyle: {
+				borderBottomColor: "#c3111b",
+				borderBottomWidth: 2
+			}
+		}
+	}
+);
 
 tabNavigator.path = "";
 
